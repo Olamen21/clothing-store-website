@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Trang giỏ hàng</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      max-height: 700px;
+    }
+
+    .item-list li >img{
+width: 35%;
+    }
+
+    .customer-info {
+      flex: 2;
+      margin-right: 20px;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 4px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .order-summary {
+      flex: 1;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 4px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333333;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #555555;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 4px;
+      border: 1px solid #cccccc;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+      color: #333333;
+    }
+
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      float: right;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .error-message {
+      color: red;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    .cart {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 4px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .cart ul {
+      padding: 0;
+      margin: 0;
+      list-style-type: none;
+    }
+
+    .cart li {
+      margin-bottom: 10px;
+      color: #333333;
+    }
+
+    .cart .subtotal {
+      font-weight: bold;
+      color: #555555;
+    }
+
+    .cart .total {
+      font-size: 18px;
+      margin-top: 10px;
+      color: #333333;
+    }
+
+    /* Styles for the order success message */
+    #order-success {
+      margin-top: 0px;
+      text-align: center;
+      padding: 0px;
+      background-color: #ffffff;
+      border-radius: 4px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="customer-info">
+      <h1>Trang giỏ hàng</h1>
+      <div class="cart">
+        <ul class="item-list">
+          <li> <img src="image/img.webp" alt=""></li>   
+        </ul>
+        <div class="total">
+          <span>Tổng cộng:</span>
+          <span>198.000₫</span>
+        </div>
+        <input type="submit" value="Thanh toán" onclick="showCheckout()">
+      </div>
+    </div>
+
+    <div class="order-summary" id="checkout-container" style="display: none;" required>
+      <h1>Thanh toán đơn hàng</h1>
+      <form id="order-form">
+        <label for="name">Họ và tên:</label>
+        <input type="text" id="name" name="name" placeholder="Nhập họ và tên" required>
+        <div class="error-message" id="name-error"></div>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Nhập địa chỉ email" required>
+        <div class="error-message" id="email-error"></div>
+
+        <label for="phone">Số điện thoại:</label>
+        <input type="tel" id="phone" name="phone" placeholder="Nhập số điện thoại" required>
+        <div class="error-message" id="phone-error"></div>
+
+        <label for="address">Địa chỉ:</label>
+        <input type="text" id="address" name="address" placeholder="Nhập địa chỉ">
+
+        <label for="shipping">Phương thức vận chuyển:</label>
+        <select id="shipping" name="shipping">
+          <option value="standard">Vận chuyển tiêu chuẩn</option>
+          <option value="express">Vận chuyển nhanh</option>
+        </select>
+
+        <label for="payment">Phương thức thanh toán:</label>
+        <select id="payment" name="payment">
+          <option value="creditcard">Thẻ tín dụng</option>
+          <option value="paypal">PayPal</option>
+          <option value="cod">Thanh toán khi nhận hàng</option>
+        </select>
+
+        <input type="submit" value="Hoàn tất thanh toán" onclick="submitOrder()">
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function showCheckout() {
+      document.getElementById('checkout-container').style.display = 'block';
+    }
+
+    function submitOrder() {
+      const form = document.getElementById('order-form');
+      const orderSuccessDiv = document.createElement('div');
+      orderSuccessDiv.id = 'order-success';
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      const name = form.elements.name.value;
+      const email = form.elements.email.value;
+      const phone = form.elements.phone.value;
+      const address = form.elements.address.value;
+      const shipping = form.elements.shipping.value;
+      const payment = form.elements.payment.value;
+
+      orderSuccessDiv.innerHTML = `
+        <h1 style="color: deepskyblue;">Đặt hàng thành công!</h1>
+        <ul>
+          <li><strong style="color: red;">Họ và tên:</strong> <span style="color: red;">${name}</span></li>
+          <li><strong style="color: red;">Email:</strong> <span style="color: red;">${email}</span></li>
+          <li><strong style="color: red;">Số điện thoại:</strong> <span style="color: red;">${phone}</span></li>
+          <li><strong style="color: red;">Địa chỉ:</strong> <span style="color: red;">${address}</span></li>
+          <li><strong style="color: red;">Phương thức vận chuyển:</strong> <span style="color: red;">${shipping}</span></li>
+          <li><strong style="color: red;">Phương thức thanh toán:</strong> <span style="color: red;">${payment}</span></li>
+        </ul>
+      `;
+
+      document.body.appendChild(orderSuccessDiv);
+      form.reset();
+    }
+  </script>
+</body>
+</html>

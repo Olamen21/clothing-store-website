@@ -1,0 +1,122 @@
+/* Big tablet to 1200px; */
+@media only screen  and (max-width:1200px){
+    .image-shirt,
+    .replace {
+        width: 200px;
+    }
+    .pro-name a{
+        font-size: 12px;
+    }
+
+}
+
+/* Small tablet to big tablet from 768x to 1023px */
+@media only screen and (max-width:1023px){
+    .col-3{
+        width: 50%;
+    }
+    .image-shirt, .replace{
+        width: 350px;
+    }
+    .icon-policy, .user, .navbar-mainmenu{
+       visibility: hidden;
+    }
+    .highlight{
+        background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 2px;
+    font-size: 14px;
+    }
+    .replace{
+        display: none;
+    }
+    .logo{
+        background-size: 200px;
+        width: 400px;
+    }
+    h3{
+        font-size: 20px;
+    }
+    .menu-list {
+        flex-direction: column;
+        background-color: whitesmoke;
+    }
+    .menu-list li {
+        padding: 10px;
+    }
+    nav ul li:nth-child(4) i{
+    position: absolute;
+    left: 170px;
+    line-height:17px;
+    font-size: 15px;
+}
+nav ul li:nth-child(6) i{
+    position: absolute;
+    left: 55px;
+    line-height:19px;
+    font-size: 15px;
+}
+nav ul li:hover{
+    border-bottom: 1px dashed rgb(77, 73, 73);
+    border-top: 1px dashed rgb(77, 73, 73) ;
+    border-left: 1px dashed rgb(77, 73, 73);
+    border-right: 1px dashed rgb(77, 73, 73);
+    border-radius: 10px;
+
+}
+nav ul li:nth-child(8){
+    border: none;
+
+}
+nav ul li:nth-child(9){
+    border: none;
+
+}
+nav ul li:nth-child(10){
+    border: none;
+
+}
+#thanh {
+    display: block;
+}
+
+nav {
+    display: none;
+}
+}
+
+/* Small phones to small tablets */
+@media only screen and (max-width: 767px){
+   .logo{
+    background-size: 180px;
+   }
+   .image-shirt{
+    width: 100%;
+   }
+   h3{
+    font-size: 15px;
+   }
+   .infor .row .col-3 p,
+   .title{
+    font-size: 15px;
+   }
+}
+
+@media only screen and (max-width: 570px){
+   .logo{
+    background-size: 100px;
+   }
+   h2 a{
+    font-size: 30px;
+   }
+   .infor .row .col-3 p,
+   .title{
+    font-size: 12px;
+   }
+}
+
+
+
+
+  
